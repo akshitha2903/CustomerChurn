@@ -1,3 +1,49 @@
-<h1>
-CustomerChurn
-</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Telecom Customer Churn Prediction</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="login">
+        <h1>Telecom Customer Churn Prediction</h1>
+
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}" method="post">
+            <input type="text" name="SeniorCitizen" placeholder="SeniorCitizen" required="required" /><br>
+            <input type="text" name="Partner" placeholder="Partner" required="required" /><br>
+            <input type="text" name="Dependents" placeholder="Dependents" required="required" /><br>
+            <input type="text" name="tenure" placeholder="tenure" required="required" /><br>
+            <input type="text" name="OnlineSecurity" placeholder="OnlineSecurity" required="required" /><br>
+            <input type="text" name="OnlineBackup" placeholder="OnlineBackup" required="required" /><br>
+            <input type="text" name="DeviceProtection" placeholder="DeviceProtection" required="required" /><br>
+            <input type="text" name="TechSupport" placeholder="TechSupport" required="required" /><br>
+            <input type="text" name="Contract" placeholder="Contract" required="required" /><br>
+            <input type="text" name="PaperlessBilling" placeholder="PaperlessBilling" required="required" /><br>
+            <input type="text" name="PaymentMethod" placeholder="PaymentMethod" required="required" /><br>
+            <input type="text" name="MonthlyCharges" placeholder="MonthlyCharges" required="required" /><br>
+            <input type="text" name="TotalCharges" placeholder="TotalCharges" required="required" /><br>
+            <input type="text" name="TotalAmountPaid" placeholder="TotalAmountPaid" required="required" /><br>
+            <input type="text" name="AdditionalServices" placeholder="AdditionalServices" required="required" /><br>
+            <input type="text" name="TenureCategory" placeholder="TenureCategory" required="required" /><br>
+            <input type="text" name="MonthlyToTotalRatio" placeholder="MonthlyToTotalRatio" required="required" /><br>
+
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+
+        <br>
+        <br>
+
+
+    </div>
+    {{prediction_text}}
+
+</body>
+
+</html>

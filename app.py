@@ -24,5 +24,17 @@ def predict_api():
         result = "Churn"
     return jsonify({"Prediction": result})
 
+@app.route('/predict',methods=['POST'])
+def predict():
+    data=[float(x) for x in request.form.values()]
+    final_input=np.array(data).reshape(1,-1)
+    print(final_input)
+    output=ranforest.predict(final_input)[0]
+    if output== 0:
+        result = "Not Churn"
+    else:
+        result = "Churn"
+    return render_template("home.html",prediction_text="The Customer Churn prediction = {}".format(result))
+
 if __name__=="__main__":
     app.run(debug=True)
