@@ -10,7 +10,7 @@ ranforest=pickle.load(open('ranforest.pkl','rb'))
 @app.route('/')
 def home():
     return render_template('home.html')
-
+#api
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
     data=request.json['data']
