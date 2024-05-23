@@ -11,3 +11,5 @@ Create a new environment
 ```
 conda create -p venv python -y
 ```
+
+Making sample changes
