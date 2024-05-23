@@ -12,34 +12,30 @@
     <style>
         body {
             font-family: 'Arimo', sans-serif;
-            background-color: #f5f5f5;
+            background: linear-gradient(to bottom, #2F3C7E, #FBEAEB);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .login {
-            background: #fff;
-            padding: 40px;
+            background: #F7C5CC;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            max-width: 90%;
+            width: 100%;
+            max-width: 600px;
             text-align: center;
-            position: relative; /* Added */
-            z-index: 1; /* Added */
-            overflow: hidden; /* Added */
-            transition: 0.3s ease-in-out; /* Added */
         }
 
         h1 {
             font-family: 'Pacifico', cursive;
-            font-size: 36px;
+            font-size: 48px;
             margin-bottom: 20px;
-            color: #333;
+            color: #CC313D;
         }
 
         input[type="text"] {
@@ -48,20 +44,20 @@
             margin: 10px 0;
             border: none;
             border-radius: 5px;
-            background-color: #f5f5f5;
+            background-color: #fff;
             border: 1px solid #ddd;
             transition: border-color 0.3s ease;
         }
 
         input[type="text"]:focus {
-            border-color: #3498db;
+            border-color: #CC313D;
             outline: none;
         }
 
         button {
             width: calc(100% - 20px);
             padding: 10px;
-            background: #3498db;
+            background: #CC313D;
             border: none;
             border-radius: 5px;
             color: #fff;
@@ -71,7 +67,7 @@
         }
 
         button:hover {
-            background: #2980b9;
+            background: #CC0000;
         }
 
         .prediction-text {
@@ -79,41 +75,29 @@
             font-size: 18px;
             color: #555;
         }
-
-        /* Added styles for background */
-        body:before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(to bottom, #2980b9, #3498db);
-            z-index: -1;
-        }
     </style>
 </head>
 
 <body>
     <div class="login">
-        <h1>CHURN PREDICTION</h1> <!-- Changed heading to all caps -->
+        <h1>CHURN PREDICTION</h1>
         <form action="{{ url_for('predict')}}" method="post">
-            <input type="text" name="SeniorCitizen" placeholder="Senior Citizen (0 or 1)" required="required" /><br>
-            <input type="text" name="Partner" placeholder="Partner (Yes or No)" required="required" /><br>
-            <input type="text" name="Dependents" placeholder="Dependents (Yes or No)" required="required" /><br>
+            <input type="text" name="SeniorCitizen" placeholder="Senior Citizen (0 for No, 1 for Yes)" required="required" /><br>
+            <input type="text" name="Partner" placeholder="Partner (0 for No, 1 for Yes)" required="required" /><br>
+            <input type="text" name="Dependents" placeholder="Dependents (0 for No, 1 for Yes)" required="required" /><br>
             <input type="text" name="tenure" placeholder="Tenure (months)" required="required" /><br>
-            <input type="text" name="OnlineSecurity" placeholder="Online Security (Yes or No)" required="required" /><br>
-            <input type="text" name="OnlineBackup" placeholder="Online Backup (Yes or No)" required="required" /><br>
-            <input type="text" name="DeviceProtection" placeholder="Device Protection (Yes or No)" required="required" /><br>
-            <input type="text" name="TechSupport" placeholder="Tech Support (Yes or No)" required="required" /><br>
-            <input type="text" name="Contract" placeholder="Contract (Month-to-month, One year, Two year)" required="required" /><br>
-            <input type="text" name="PaperlessBilling" placeholder="Paperless Billing (Yes or No)" required="required" /><br>
-            <input type="text" name="PaymentMethod" placeholder="Payment Method (Electronic check, Mailed check, Bank transfer (automatic), Credit card (automatic))" required="required" /><br>
+            <input type="text" name="OnlineSecurity" placeholder="Online Security (0 for No, 1 for Yes)" required="required" /><br>
+            <input type="text" name="OnlineBackup" placeholder="Online Backup (0 for No, 1 for Yes)" required="required" /><br>
+            <input type="text" name="DeviceProtection" placeholder="Device Protection (0 for No, 1 for Yes)" required="required" /><br>
+            <input type="text" name="TechSupport" placeholder="Tech Support (0 for No, 1 for Yes)" required="required" /><br>
+            <input type="text" name="Contract" placeholder="Contract (0 for Month-to-month, 1 for One year, 2 for Two year)" required="required" /><br>
+            <input type="text" name="PaperlessBilling" placeholder="Paperless Billing (0 for No, 1 for Yes)" required="required" /><br>
+            <input type="text" name="PaymentMethod" placeholder="Payment Method (0 for Electronic check, 1 for Mailed check, 2 for Bank transfer (automatic), 3 for Credit card (automatic))" required="required" /><br>
             <input type="text" name="MonthlyCharges" placeholder="Monthly Charges" required="required" /><br>
             <input type="text" name="TotalCharges" placeholder="Total Charges" required="required" /><br>
             <input type="text" name="TotalAmountPaid" placeholder="Total Amount Paid" required="required" /><br>
-            <input type="text" name="AdditionalServices" placeholder="Additional Services (Yes or No)" required="required" /><br>
-            <input type="text" name="TenureCategory" placeholder="Tenure Category" required="required" /><br>
+            <input type="text" name="AdditionalServices" placeholder="Additional Services (0 for No, 1 for Yes)" required="required" /><br>
+            <input type="text" name="TenureCategory" placeholder="Tenure Category (0 for 0-1 year, 1 for 1-2 years, 2 for 2-3 years, 3 for 3-4 years, 4 for 4-5 years, 5 for 5+ years)" required="required" /><br>            
             <input type="text" name="MonthlyToTotalRatio" placeholder="Monthly to Total Ratio" required="required" /><br>
             <button type="submit">Predict</button>
         </form>
@@ -124,4 +108,3 @@
 </body>
 
 </html>
-
