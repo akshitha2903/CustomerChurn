@@ -81,7 +81,7 @@
 <body>
     <div class="login">
         <h1>CHURN PREDICTION</h1>
-        <form action="{{ url_for('predict')}}" method="post">
+        <form action="{{ url_for('churn_prediction')}}" method="post">
             <input type="text" name="SeniorCitizen" placeholder="Senior Citizen (0 for No, 1 for Yes)" required="required" /><br>
             <input type="text" name="Partner" placeholder="Partner (0 for No, 1 for Yes)" required="required" /><br>
             <input type="text" name="Dependents" placeholder="Dependents (0 for No, 1 for Yes)" required="required" /><br>
