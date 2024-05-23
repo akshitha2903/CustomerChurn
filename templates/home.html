@@ -8,42 +8,103 @@
     <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            font-family: 'Arimo', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            background: #3498db;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .prediction-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
     <div class="login">
         <h1>Telecom Customer Churn Prediction</h1>
-
-        <!-- Main Input For Receiving Query to our ML -->
         <form action="{{ url_for('predict')}}" method="post">
-            <input type="text" name="SeniorCitizen" placeholder="SeniorCitizen" required="required" /><br>
-            <input type="text" name="Partner" placeholder="Partner" required="required" /><br>
-            <input type="text" name="Dependents" placeholder="Dependents" required="required" /><br>
-            <input type="text" name="tenure" placeholder="tenure" required="required" /><br>
-            <input type="text" name="OnlineSecurity" placeholder="OnlineSecurity" required="required" /><br>
-            <input type="text" name="OnlineBackup" placeholder="OnlineBackup" required="required" /><br>
-            <input type="text" name="DeviceProtection" placeholder="DeviceProtection" required="required" /><br>
-            <input type="text" name="TechSupport" placeholder="TechSupport" required="required" /><br>
-            <input type="text" name="Contract" placeholder="Contract" required="required" /><br>
-            <input type="text" name="PaperlessBilling" placeholder="PaperlessBilling" required="required" /><br>
-            <input type="text" name="PaymentMethod" placeholder="PaymentMethod" required="required" /><br>
-            <input type="text" name="MonthlyCharges" placeholder="MonthlyCharges" required="required" /><br>
-            <input type="text" name="TotalCharges" placeholder="TotalCharges" required="required" /><br>
-            <input type="text" name="TotalAmountPaid" placeholder="TotalAmountPaid" required="required" /><br>
-            <input type="text" name="AdditionalServices" placeholder="AdditionalServices" required="required" /><br>
-            <input type="text" name="TenureCategory" placeholder="TenureCategory" required="required" /><br>
-            <input type="text" name="MonthlyToTotalRatio" placeholder="MonthlyToTotalRatio" required="required" /><br>
-
-            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            <input type="text" name="SeniorCitizen" placeholder="Senior Citizen (0 or 1)" required="required" /><br>
+            <input type="text" name="Partner" placeholder="Partner (Yes or No)" required="required" /><br>
+            <input type="text" name="Dependents" placeholder="Dependents (Yes or No)" required="required" /><br>
+            <input type="text" name="tenure" placeholder="Tenure (months)" required="required" /><br>
+            <input type="text" name="OnlineSecurity" placeholder="Online Security (Yes or No)" required="required" /><br>
+            <input type="text" name="OnlineBackup" placeholder="Online Backup (Yes or No)" required="required" /><br>
+            <input type="text" name="DeviceProtection" placeholder="Device Protection (Yes or No)" required="required" /><br>
+            <input type="text" name="TechSupport" placeholder="Tech Support (Yes or No)" required="required" /><br>
+            <input type="text" name="Contract" placeholder="Contract (Month-to-month, One year, Two year)" required="required" /><br>
+            <input type="text" name="PaperlessBilling" placeholder="Paperless Billing (Yes or No)" required="required" /><br>
+            <input type="text" name="PaymentMethod" placeholder="Payment Method (Electronic check, Mailed check, Bank transfer (automatic), Credit card (automatic))" required="required" /><br>
+            <input type="text" name="MonthlyCharges" placeholder="Monthly Charges" required="required" /><br>
+            <input type="text" name="TotalCharges" placeholder="Total Charges" required="required" /><br>
+            <input type="text" name="TotalAmountPaid" placeholder="Total Amount Paid" required="required" /><br>
+            <input type="text" name="AdditionalServices" placeholder="Additional Services (Yes or No)" required="required" /><br>
+            <input type="text" name="TenureCategory" placeholder="Tenure Category" required="required" /><br>
+            <input type="text" name="MonthlyToTotalRatio" placeholder="Monthly to Total Ratio" required="required" /><br>
+            <button type="submit">Predict</button>
         </form>
-
-        <br>
-        <br>
-
-
+        <div class="prediction-text">
+            {{ prediction_text }}
+        </div>
     </div>
-    {{prediction_text}}
-
 </body>
 
 </html>
