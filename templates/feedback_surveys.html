@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback and Surveys</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #F9F9F9;
+            background: linear-gradient(to bottom, #CDF0EA, #01204E);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 44px;
+            margin-bottom: 20px;
+            color: #01204E;
+        }
+
+        .form-container {
+            background-color: #ECC5FB;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            max-width: 500px;
+            width: calc(100% - 40px);
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #F9F9F9;
+            border: 1px solid #01204E;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #ECC5FB;
+            outline: none;
+        }
+
+        .form-button {
+            background-color: #FAF4B7;
+            color: #01204E;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .form-button:hover {
+            background-color: #CDF0EA;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Feedback and Surveys</h1>
+        <div class="form-container">
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" class="form-input" required><br>
+                <input type="email" name="email" placeholder="Your Email" class="form-input" required><br>
+                <input type="phno" name="phno" placeholder="Your PhoneNumber" class="form-input" required><br>
+                <textarea name="feedback" placeholder="Your Feedback" class="form-input" rows="6" required></textarea><br>
+                <button type="submit" class="form-button">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

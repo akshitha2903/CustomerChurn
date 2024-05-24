@@ -2,7 +2,7 @@ import pickle
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-
+from flask import redirect, url_for
 # Load the RandomForestClassifier model
 ranforest = pickle.load(open('ranforest.pkl', 'rb'))
 
@@ -92,9 +92,24 @@ def churn_prediction():
         db.session.add(new_data)
         db.session.commit()
 
-        return render_template('home.html', prediction_text="The Customer Churn prediction = {}".format(prediction_result))
+        # Redirect to prediction result page with the prediction text
+        return redirect(url_for('prediction_result', prediction_result=prediction_result))
 
     return render_template('home.html')
+
+@app.route('/prediction_result/<prediction_result>', methods=['GET'])
+def prediction_result(prediction_result):
+    return render_template('prediction_result.html', prediction_text="Customer Churn Prediction = {}".format(prediction_result))
+# Add this route to your Flask application
+@app.route('/personalized_offers')
+def personalized_offers():
+    return render_template('personalized_offers.html')
+@app.route('/feedback_surveys')
+def feedback_surveys():
+    return render_template('feedback_surveys.html')
+@app.route('/enhanced_support')
+def enhanced_support():
+    return render_template('enhanced_support.html')
 
 # API route for making predictions
 @app.route('/predict_api', methods=['POST'])

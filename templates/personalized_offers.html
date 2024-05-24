@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Personalized Offers and Discounts</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #01204E;
+            background: linear-gradient(to bottom, #F9F9F9, #01204E);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #01204E;
+        }
+
+        .offer-box {
+            background-color: #CDF0EA;
+            border-radius: 20px; /* Adjust border radius for card shape */
+            padding: 30px; /* Adjust padding for space inside card */
+            margin: 20px; /* Adjust margin for spacing between cards */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: inline-block;
+            max-width: 500px; /* Adjust maximum width for card */
+            width: calc(100% - 40px); /* Adjust width for responsiveness */
+        }
+
+        .offer-box:hover {
+            transform: translateY(-5px);
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            background-color: #ECC5FB;
+            color: #01204E;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px; /* Adjust padding for button size */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #FAF4B7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Personalized Offers and Discounts</h1>
+        <div class="offer-box">
+            <p>Get 20% off on your next purchase with the code "SAVE20".</p>
+            <a href="#" class="button">Claim Offer</a>
+        </div>
+        <div class="offer-box">
+            <p>Buy one, get one free on all accessories.</p>
+            <a href="#" class="button">Claim Offer</a>
+        </div>
+        <div class="offer-box">
+            <p>Sign up for our premium membership and get access to exclusive deals.</p>
+            <a href="#" class="button">Learn More</a>
+        </div>
+    </div>
+</body>
+</html>

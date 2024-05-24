@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Churn Prediction Result</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #F9F9F9, #01204E);
+            color: #A91D3A;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #A91D3A;
+        }
+
+        p {
+            font-size: 30px; /* Adjust font size as needed */
+            font-weight: bold; /* Make the text bold */
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .options-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .option-card {
+            background-color: #F6DCAC;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: calc(33.33% - 20px); /* Adjust width as needed */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .option-card button {
+            background-color: #A91D3A;
+            color: #F6DCAC;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .option-card button:hover {
+            background-color: #74173C;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Churn Prediction Result</h1>
+        <div>
+            <p>{{ prediction_text }}</p>
+            <!-- Display options only if prediction is "Churn" -->
+            {% if prediction_text == "Customer Churn Prediction = Churn" %}
+            <div class="options-container">
+                <div class="option-card">
+                    <button onclick="window.location.href='/personalized_offers'">Personalized Offers and Discounts</button>
+                </div>
+                <div class="option-card">
+                    <button onclick="window.location.href='/feedback_surveys'">Feedback and Surveys</button>
+                </div>
+                <div class="option-card">
+                    <button onclick="window.location.href='/enhanced_support'">Enhanced Customer Support</button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
