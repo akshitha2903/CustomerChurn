@@ -75,12 +75,17 @@
             background-color: #CDF0EA;
         }
     </style>
+    <script>
+        function showAlert() {
+            alert('Form has been submitted successfully!');
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Feedback and Surveys</h1>
         <div class="form-container">
-            <form action="#" method="post">
+            <form action="#" method="post" onsubmit="showAlert()">
                 <input type="text" name="name" placeholder="Your Name" class="form-input" required><br>
                 <input type="email" name="email" placeholder="Your Email" class="form-input" required><br>
                 <input type="phno" name="phno" placeholder="Your PhoneNumber" class="form-input" required><br>

@@ -1,10 +1,14 @@
 import pickle
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask import redirect, url_for
+from sklearn.preprocessing import MinMaxScaler
+
 # Load the RandomForestClassifier model
 ranforest = pickle.load(open('ranforest.pkl', 'rb'))
+
+# Initialize MinMaxScaler (fit it on your training data during model training)
+scaler = MinMaxScaler()
 
 # Create the Flask application
 app = Flask(__name__)
@@ -55,7 +59,14 @@ def churn_prediction():
         total_amount_paid = float(request.form['TotalAmountPaid'])
         additional_services = int(request.form['AdditionalServices'])
         tenure_category = int(request.form['TenureCategory'])
-        monthly_to_total_ratio = float(request.form['MonthlyToTotalRatio'])
+
+        # Calculate MonthlyToTotalRatio and TotalAmountPaid
+        monthly_to_total_ratio = monthly_charges / total_charges if total_charges != 0 else 0
+        total_amount_paid = tenure * monthly_charges
+
+        # Scale numerical values
+        scaled_values = scaler.fit_transform([[monthly_charges, total_charges, total_amount_paid, monthly_to_total_ratio]])
+        monthly_charges, total_charges, total_amount_paid, monthly_to_total_ratio = scaled_values[0]
 
         # Perform prediction
         input_data = np.array([[senior_citizen, partner, dependents, tenure, online_security, online_backup,
@@ -100,13 +111,24 @@ def churn_prediction():
 @app.route('/prediction_result/<prediction_result>', methods=['GET'])
 def prediction_result(prediction_result):
     return render_template('prediction_result.html', prediction_text="Customer Churn Prediction = {}".format(prediction_result))
-# Add this route to your Flask application
+
 @app.route('/personalized_offers')
 def personalized_offers():
     return render_template('personalized_offers.html')
-@app.route('/feedback_surveys')
+
+@app.route('/feedback_surveys', methods=['GET', 'POST'])
 def feedback_surveys():
+    if request.method == 'POST':
+        # Process form data here
+        name = request.form['name']
+        email = request.form['email']
+        phno = request.form['phno']
+        feedback = request.form['feedback']
+
+        # Redirect to the same page or another page
+        return redirect(url_for('feedback_surveys'))
     return render_template('feedback_surveys.html')
+
 @app.route('/enhanced_support')
 def enhanced_support():
     return render_template('enhanced_support.html')
@@ -122,6 +144,7 @@ def predict_api():
     else:
         result = "Churn"
     return jsonify({"Prediction": result})
+
 # Route for rendering home page with prediction result
 @app.route('/predict', methods=['POST'])
 def predict():

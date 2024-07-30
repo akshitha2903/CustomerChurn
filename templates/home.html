@@ -38,7 +38,9 @@
             color: #CC313D;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="number"],
+        .radio-group {
             width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
@@ -49,7 +51,9 @@
             transition: border-color 0.3s ease;
         }
 
-        input[type="text"]:focus {
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        .radio-group:focus {
             border-color: #CC313D;
             outline: none;
         }
@@ -70,6 +74,32 @@
             background: #CC0000;
         }
 
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .radio-group label {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .radio-group input[type="radio"] {
+            display: none;
+        }
+
+        .radio-group input[type="radio"]:checked+label {
+            border-color: #CC313D;
+            background-color: #FFCCCB;
+        }
+
         .prediction-text {
             margin-top: 20px;
             font-size: 18px;
@@ -82,23 +112,111 @@
     <div class="login">
         <h1>CHURN PREDICTION</h1>
         <form action="{{ url_for('churn_prediction')}}" method="post">
-            <input type="text" name="SeniorCitizen" placeholder="Senior Citizen (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="Partner" placeholder="Partner (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="Dependents" placeholder="Dependents (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="tenure" placeholder="Tenure (months)" required="required" /><br>
-            <input type="text" name="OnlineSecurity" placeholder="Online Security (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="OnlineBackup" placeholder="Online Backup (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="DeviceProtection" placeholder="Device Protection (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="TechSupport" placeholder="Tech Support (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="Contract" placeholder="Contract (0 for Month-to-month, 1 for One year, 2 for Two year)" required="required" /><br>
-            <input type="text" name="PaperlessBilling" placeholder="Paperless Billing (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="PaymentMethod" placeholder="Payment Method (0 for Electronic check, 1 for Mailed check, 2 for Bank transfer (automatic), 3 for Credit card (automatic))" required="required" /><br>
-            <input type="text" name="MonthlyCharges" placeholder="Monthly Charges" required="required" /><br>
-            <input type="text" name="TotalCharges" placeholder="Total Charges" required="required" /><br>
-            <input type="text" name="TotalAmountPaid" placeholder="Total Amount Paid" required="required" /><br>
-            <input type="text" name="AdditionalServices" placeholder="Additional Services (0 for No, 1 for Yes)" required="required" /><br>
-            <input type="text" name="TenureCategory" placeholder="Tenure Category (0 for 0-1 year, 1 for 1-2 years, 2 for 2-3 years, 3 for 3-4 years, 4 for 4-5 years, 5 for 5+ years)" required="required" /><br>            
-            <input type="text" name="MonthlyToTotalRatio" placeholder="Monthly to Total Ratio" required="required" /><br>
+            <div class="radio-group">
+                <input type="radio" id="senior_yes" name="SeniorCitizen" value="1" required>
+                <label for="senior_yes">Senior Citizen (Yes)</label>
+                <input type="radio" id="senior_no" name="SeniorCitizen" value="0" required>
+                <label for="senior_no">Senior Citizen (No)</label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" id="partner_yes" name="Partner" value="1" required>
+                <label for="partner_yes">Partner (Yes)</label>
+                <input type="radio" id="partner_no" name="Partner" value="0" required>
+                <label for="partner_no">Partner (No)</label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" id="dependents_yes" name="Dependents" value="1" required>
+                <label for="dependents_yes">Dependents (Yes)</label>
+                <input type="radio" id="dependents_no" name="Dependents" value="0" required>
+                <label for="dependents_no">Dependents (No)</label>
+            </div>
+
+            <input type="number" name="tenure" placeholder="Tenure (months)" required="required" min="0" step="1" />
+
+            <div class="radio-group">
+                <input type="radio" id="onlinesec_yes" name="OnlineSecurity" value="1" required>
+                <label for="onlinesec_yes">Online Security (Yes)</label>
+                <input type="radio" id="onlinesec_no" name="OnlineSecurity" value="0" required>
+                <label for="onlinesec_no">Online Security (No)</label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" id="onlinebackup_yes" name="OnlineBackup" value="1" required>
+                <label for="onlinebackup_yes">Online Backup (Yes)</label>
+                <input type="radio" id="onlinebackup_no" name="OnlineBackup" value="0" required>
+                <label for="onlinebackup_no">Online Backup (No)</label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" id="deviceprot_yes" name="DeviceProtection" value="1" required>
+                <label for="deviceprot_yes">Device Protection (Yes)</label>
+                <input type="radio" id="deviceprot_no" name="DeviceProtection" value="0" required>
+                <label for="deviceprot_no">Device Protection (No)</label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" id="techsup_yes" name="TechSupport" value="1" required>
+                <label for="techsup_yes">Tech Support (Yes)</label>
+                <input type="radio" id="techsup_no" name="TechSupport" value="0" required>
+                <label for="techsup_no">Tech Support (No)</label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" id="contract_0" name="Contract" value="0" required>
+                <label for="contract_0">Month-to-month</label>
+                <input type="radio" id="contract_1" name="Contract" value="1" required>
+                <label for="contract_1">One year</label>
+                <input type="radio" id="contract_2" name="Contract" value="2" required>
+                <label for="contract_2">Two year</label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" id="paperless_yes" name="PaperlessBilling" value="1" required>
+                <label for="paperless_yes">Paperless Billing (Yes)</label>
+                <input type="radio" id="paperless_no" name="PaperlessBilling" value="0" required>
+                <label for="paperless_no">Paperless Billing (No)</label>
+            </div>
+            
+            <div class="radio-group">
+                <p>Payment Method:</p>
+                <input type="radio" id="payment_0" name="PaymentMethod" value="0" required>
+                <label for="payment_0">Electronic check</label><br>
+                <input type="radio" id="payment_1" name="PaymentMethod" value="1" required>
+                <label for="payment_1">Mailed check</label><br>
+                <input type="radio" id="payment_2" name="PaymentMethod" value="2" required>
+                <label for="payment_2">Bank transfer (automatic)</label><br>
+                <input type="radio" id="payment_3" name="PaymentMethod" value="3" required>
+                <label for="payment_3">Credit card (automatic)</label>
+            </div>
+            <input type="number" name="MonthlyCharges" placeholder="Monthly Charges" required="required" min="0" step="any" />
+            <input type="number" name="TotalCharges" placeholder="Total Charges" required="required" min="0" step="any" />
+            <input type="number" name="TotalAmountPaid" placeholder="Total Amount Paid" required="required" min="0" step="any" />
+
+            <div class="radio-group">
+                <input type="radio" id="addservices_yes" name="AdditionalServices" value="1" required>
+                <label for="addservices_yes">Additional Services (Yes)</label>
+                <input type="radio" id="addservices_no" name="AdditionalServices" value="0" required>
+                <label for="addservices_no">Additional Services (No)</label>
+            </div>
+
+            <div class="radio-group">
+                <p>Tenure Category:</p>
+                <input type="radio" id="tenurecat_0" name="TenureCategory" value="0" required>
+                <label for="tenurecat_0">0-1 year</label>
+                <input type="radio" id="tenurecat_1" name="TenureCategory" value="1" required>
+                <label for="tenurecat_1">1-2 years</label>
+                <input type="radio" id="tenurecat_2" name="TenureCategory" value="2" required>
+                <label for="tenurecat_2">2-3 years</label>
+                <input type="radio" id="tenurecat_3" name="TenureCategory" value="3" required>
+                <label for="tenurecat_3">3-4 years</label>
+                <input type="radio" id="tenurecat_4" name="TenureCategory" value="4" required>
+                <label for="tenurecat_4">4-5 years</label>
+                <input type="radio" id="tenurecat_5" name="TenureCategory" value="5" required>
+                <label for="tenurecat_5">5+ years</label>
+            </div>
+
             <button type="submit">Predict</button>
         </form>
         <div class="prediction-text">
